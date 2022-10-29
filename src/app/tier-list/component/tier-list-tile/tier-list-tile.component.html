@@ -1,0 +1,19 @@
+<div class="tier-list-tile">
+  <div
+    [style.backgroundColor]="title.backgroundColor"
+    class="tier-list-tile-identifier-container"
+  >
+    {{ title.label }}
+  </div>
+  <div
+    [attr.identifier]="title.label + title.backgroundColor"
+    cdkDropList
+    [cdkDropListOrientation]="'horizontal'"
+    class="tier-list-tile-image-container"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div cdkDrag *ngFor="let image of tierImages">
+      <tier-list-image [image]="image"></tier-list-image>
+    </div>
+  </div>
+</div>

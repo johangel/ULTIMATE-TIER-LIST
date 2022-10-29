@@ -11,6 +11,8 @@ export interface TLTile {
   value: number;
 }
 
+export type TLTileResume = Omit<TLTile, 'title'>;
+
 export interface TLTileTitle {
   label: string;
   backgroundColor: string;

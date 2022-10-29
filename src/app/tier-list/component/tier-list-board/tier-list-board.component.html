@@ -1,0 +1,26 @@
+<h2>{{ title }}</h2>
+
+<div cdkDropListGroup>
+  <div class="tile-container" cdkDropList>
+    <tier-list-tile
+      [value]="tile.value"
+      [title]="tile.title"
+      *ngFor="let tile of amountOfTiles"
+    ></tier-list-tile>
+  </div>
+  <div
+    class="tile-images-placeholder"
+    [cdkDropListOrientation]="'horizontal'"
+    cdkDropList
+  >
+    <div
+      *ngFor="let image of imagesPlaceholder"
+      cdkDrag
+      (cdkDragDropped)="dropImage($event, image)"
+    >
+      <tier-list-image [image]="image"> </tier-list-image>
+    </div>
+  </div>
+</div>
+
+<button (click)="getAllValues()">get values</button>
