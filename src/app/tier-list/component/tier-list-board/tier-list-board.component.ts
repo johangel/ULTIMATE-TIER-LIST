@@ -75,31 +75,39 @@ export class TierListBoardComponent {
 
   @Input() title: string = 'Tier list';
 
+  totalScore!: TLTile[];
+
   getAllValues() {
-    const tiles = this.tiles.map((tile) => tile.submitTotal());
-    console.log(tiles, ' all tiles from ', this.title);
+    this.totalScore = this.tiles.map((tile) => tile.submitTotal());
   }
 
-  // drop(event: CdkDragDrop<string[]> | any) {
-  //   console.log(event, ' event');
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     );
-  //   } else {
-  //     transferArrayItem(
-  //       event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     );
-  //   }
-  // }
+  onImageDroppedOutsideTile(componentEvent: {
+    event: CdkDragDrop<TLImage>;
+    eventImage: TLImage;
+    tile: TierListTileComponent;
+  }) {
+    const event = componentEvent.event;
+    const eventImage = componentEvent.eventImage;
+    const previousTile = componentEvent.tile;
+    const element = document.elementFromPoint(
+      event.dropPoint.x,
+      event.dropPoint.y
+    );
+    if (element) {
+      const tile = this.tiles.find(
+        (tile) =>
+          tile.title.label + tile.title.backgroundColor ===
+          element.getAttribute('identifier')
+      );
+
+      if (tile) {
+        tile.tierImages.push(eventImage);
+        previousTile.removeImage(eventImage);
+      }
+    }
+  }
 
   dropImage(event: CdkDragDrop<TLImage>, eventImage: TLImage): void {
-    console.log(event, ' event');
     const element = document.elementFromPoint(
       event.dropPoint.x,
       event.dropPoint.y
@@ -121,10 +129,5 @@ export class TierListBoardComponent {
         );
       }
     }
-    // event.
-    // this.tiles.find(tile => tile.title === event.)
-    // console.log(event.item, ' item');
-    // const container = event.container.id as CdkDropList;
-    // container.addItem(event.item);
   }
 }

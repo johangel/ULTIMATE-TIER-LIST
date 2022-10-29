@@ -12,7 +12,11 @@
     class="tier-list-tile-image-container"
     (cdkDropListDropped)="drop($event)"
   >
-    <div cdkDrag *ngFor="let image of tierImages">
+    <div
+      cdkDrag
+      *ngFor="let image of tierImages"
+      (cdkDragDropped)="dropImageOutside($event, image)"
+    >
       <tier-list-image [image]="image"></tier-list-image>
     </div>
   </div>
