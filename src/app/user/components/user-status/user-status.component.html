@@ -1,0 +1,15 @@
+<div class="user-status-container" *ngIf="userService.user.name; else nameForm">
+  <h3>{{ userService.user.name }}</h3>
+  <mat-slide-toggle
+    (change)="toggleOnlineStatus($event)"
+    [ngModel]="userService.user.online"
+    >{{ userService.user.online ? "online" : "offline" }}</mat-slide-toggle
+  >
+</div>
+
+<ng-template #nameForm>
+  <form (ngSubmit)="submitForm()" [formGroup]="userForm">
+    <input formControlName="name" type="text" placeholder="insert your name" />
+    <input type="submit" [disabled]="userForm.invalid" value="submit name" />
+  </form>
+</ng-template>

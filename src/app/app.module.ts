@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,6 +16,7 @@ import { TierListModule } from './tier-list/tier-list.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     TierListModule,
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

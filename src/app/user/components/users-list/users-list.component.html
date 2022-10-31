@@ -1,0 +1,5 @@
+<mat-list role="list">
+  <mat-list-item *ngFor="let user of userService.usersList"
+    >{{ user.name }} - {{ user.online ? "online" : "offline" }}</mat-list-item
+  >
+</mat-list>

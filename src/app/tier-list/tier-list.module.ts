@@ -6,6 +6,8 @@ import { TierListImageComponent } from './component/tier-list-image/tier-list-im
 import { TierListBoardComponent } from './component/tier-list-board/tier-list-board.component';
 import { TierListTileComponent } from './component/tier-list-tile/tier-list-tile.component';
 import { CommonModule } from '@angular/common';
+import { SocketClientService } from './services/tier-list.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const components = [
   TierListBoardComponent,
@@ -15,9 +17,9 @@ const components = [
 ];
 
 @NgModule({
-  imports: [DragDropModule, MatButtonModule, CommonModule],
+  imports: [DragDropModule, MatButtonModule, CommonModule, HttpClientModule],
   exports: components,
   declarations: components,
-  providers: [],
+  providers: [SocketClientService],
 })
 export class TierListModule {}
